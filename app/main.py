@@ -6,8 +6,8 @@ from app.core.logging import configure_logging
 
 app = FastAPI(title=settings.PROJECT_NAME, version=settings.PROJECT_VERSION)
 
-app.include_router(item_router)
-app.include_router(birute_router)
+app.include_router(item_router, prefix="/items", tags=["items"])
+app.include_router(birute_router, prefix="/birute", tags=["birute"])
 
 configure_logging()
 
