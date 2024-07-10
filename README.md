@@ -1,6 +1,6 @@
 # FastAPI Project
 
-This is a production-ready FastAPI project template.
+This is an example production-ready FastAPI template.
 
 ## Setup
 

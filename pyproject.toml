@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "example-fastapi-project"
+version = "0.1.0"
+description = "An example FastAPI project"
+authors = ["Alex Muzzy <alexmuzzy33@gmail.com>"]
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "^3.12"
+fastapi = "^0.111.0"
+uvicorn = "^0.30.1"
+pydantic = "^2.8.0"
+pydantic-settings = "^2.3.4"
+
+[tool.poetry.dev-dependencies]
+pytest = "^8.2.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
