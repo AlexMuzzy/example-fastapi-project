@@ -1,11 +1,13 @@
 from fastapi import FastAPI
-from app.api.endpoints import router
+from app.api.items import router as item_router
+from app.api.birute import router as birute_router
 from app.core.config import settings
 from app.core.logging import configure_logging
 
 app = FastAPI(title=settings.PROJECT_NAME, version=settings.PROJECT_VERSION)
 
-app.include_router(router)
+app.include_router(item_router)
+app.include_router(birute_router)
 
 configure_logging()
 
