@@ -19,3 +19,11 @@ Run tests using pytest: `pytest tests/`
 ## API Documentation
 
 Access the API documentation at `http://localhost:8000/docs` when the application is running.
+
+## Updating Dependencies
+
+When you modify any package, update the `requirements.txt` file using the following command:
+
+```bash
+poetry export --without-hashes --format=requirements.txt > requirements.txt
+```
