@@ -16,3 +16,7 @@ async def startup_event():
 @app.on_event("shutdown")
 async def shutdown_event():
     print(f"Shutting down {settings.PROJECT_NAME}")
+
+if __name__ == '__main__':
+    import uvicorn
+    uvicorn.run(app)
