@@ -1,8 +1,8 @@
 from pydantic_settings import BaseSettings
 
 class Settings(BaseSettings):
-    PROJECT_NAME: str = "FastAPI Project"
-    PROJECT_VERSION: str = "1.0.0"
+    PROJECT_NAME: str = "Example FastAPI Project"
+    PROJECT_VERSION: str = "0.1.0 (dev)"
     DEBUG: bool = False
 
     class Config:
