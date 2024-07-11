@@ -23,11 +23,4 @@ class Item(ItemBase):
     id: int
 
     class Config:
-        orm_mode = True
-
-# Conversion functions
-def to_pydantic(db_model: ItemDB) -> Item:
-    return Item.from_orm(db_model)
-
-def to_sqlalchemy(pydantic_model: ItemCreate) -> ItemDB:
-    return ItemDB(**pydantic_model.dict())
+        from_attributes = True
