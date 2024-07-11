@@ -1,3 +1,4 @@
+from db import Base, engine
 from fastapi import FastAPI
 from app.api.items import router as item_router
 from app.api.birute import router as birute_router
@@ -10,6 +11,8 @@ app.include_router(item_router, prefix="/items", tags=["items"])
 app.include_router(birute_router, prefix="/birute", tags=["birute"])
 
 configure_logging()
+
+Base.metadata.create_all(bind=engine)
 
 @app.on_event("startup")
 async def startup_event():

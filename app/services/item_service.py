@@ -1,17 +1,19 @@
-from app.models.item import Item, ItemCreate
+from db import SessionLocal
+from models.item import Item, ItemCreate, ItemDB
 
 class ItemService:
     def __init__(self):
-        self.items = {}
+        self.db = SessionLocal()
 
     def get_item(self, item_id: int) -> Item | None:
-        return self.items.get(item_id)
+        return self.db.query(ItemDB).filter(Item.id == item_id).first()
 
     def create_item(self, item: ItemCreate) -> Item:
-        item_id = len(self.items) + 1
-        new_item = Item(id=item_id, **item.dict())
-        self.items[item_id] = new_item
+        new_id = self.db.query(ItemDB).count() + 1
+        new_item = ItemDB(id=new_id, name=item.name, description=item.description)
+        self.db.add(new_item)
+        self.db.commit()
         return new_item
 
     def list_items(self, skip: int = 0, limit: int = 10) -> list[Item]:
-        return list(self.items.values())[skip : skip + limit]
+        return list(self.db.query(ItemDB).all())[skip : skip + limit]
