@@ -1,9 +1,9 @@
 from db import Base, engine
 from fastapi import FastAPI
-from app.api.items import router as item_router
-from app.api.birute import router as birute_router
-from app.core.config import settings
-from app.core.logging import configure_logging
+from api.items import router as item_router
+from api.birute import router as birute_router
+from core.config import settings
+from core.logging import configure_logging
 
 app = FastAPI(title=settings.PROJECT_NAME, version=settings.PROJECT_VERSION)
 
