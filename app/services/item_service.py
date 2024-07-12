@@ -1,5 +1,6 @@
-from db import SessionLocal
+from core.db import SessionLocal
 from models.item import Item, ItemCreate, ItemDB
+
 
 class ItemService:
     def __init__(self):

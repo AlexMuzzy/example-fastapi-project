@@ -1,4 +1,4 @@
-from db import Base, engine
+from core.db import Base, engine
 from fastapi import FastAPI
 from api.items import router as item_router
 from api.birute import router as birute_router
@@ -14,6 +14,7 @@ configure_logging()
 
 Base.metadata.create_all(bind=engine)
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     import uvicorn
+
     uvicorn.run(app)
