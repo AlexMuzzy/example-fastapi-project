@@ -1,6 +1,7 @@
 from pydantic_settings import BaseSettings
 from os import environ
 
+
 class Settings(BaseSettings):
     PROJECT_NAME: str
     PROJECT_VERSION: str
@@ -11,6 +12,7 @@ class Settings(BaseSettings):
     DB_NAME: str
 
     class Config:
-        env_file = '.env.production' if environ.get('NODE_ENV') == 'production' else '.env'
+        env_file = ".env.production" if environ.get("ENV") == "production" else ".env"
+
 
 settings = Settings()
