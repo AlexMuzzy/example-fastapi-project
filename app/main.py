@@ -1,3 +1,5 @@
+from os import environ, path
+from sys import path
 from fastapi import FastAPI
 from api.items import router as item_router
 from api.birute import router as birute_router
@@ -16,5 +18,8 @@ Base.metadata.create_all(bind=engine)
 
 if __name__ == "__main__":
     import uvicorn
+
+    if environ.get("ENV") == "production":
+        path.append(path.dirname(path.dirname(__file__)))
 
     uvicorn.run(app)
