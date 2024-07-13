@@ -1,5 +1,5 @@
-from core.db import SessionLocal
-from models.item import Item, ItemCreate, ItemDB
+from app.core.db import SessionLocal
+from app.models.item import Item, ItemDB, ItemCreate
 
 
 class ItemService:

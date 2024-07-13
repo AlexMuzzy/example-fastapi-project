@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException, Depends
-from models.item import Item, ItemCreate
-from services.item_service import ItemService
+from app.models.item import Item, ItemCreate
+from app.services.item_service import ItemService
 import logging
 
 router = APIRouter()

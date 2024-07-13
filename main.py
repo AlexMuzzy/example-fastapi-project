@@ -1,11 +1,12 @@
-from os import environ, path
+from os import environ
 from sys import path
 from fastapi import FastAPI
-from api.items import router as item_router
-from api.birute import router as birute_router
-from core.config import settings
-from core.db import Base, engine
-from core.logging import configure_logging
+
+from app.core.config import settings
+from app.api.items import router as item_router
+from app.api.birute import router as birute_router
+from app.core.db import Base, engine
+from app.core.logging import configure_logging
 
 app = FastAPI(title=settings.PROJECT_NAME, version=settings.PROJECT_VERSION)
 
