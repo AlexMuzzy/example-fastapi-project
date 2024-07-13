@@ -1,5 +1,3 @@
-from os import environ
-from sys import path
 from fastapi import FastAPI
 
 from app.core.config import settings
@@ -19,8 +17,5 @@ Base.metadata.create_all(bind=engine)
 
 if __name__ == "__main__":
     import uvicorn
-
-    if environ.get("ENV") == "production":
-        path.append(path.dirname(path.dirname(__file__)))
 
     uvicorn.run(app)
