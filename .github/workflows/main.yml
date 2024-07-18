@@ -2,49 +2,49 @@ name: Deploy to Lambda
 
 on:
   push:
-    branches: '**'
+    branches: [main]
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    
-    steps:
-    - uses: actions/checkout@v3
-    
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.12'
-    
-    - name: Install Poetry
-      uses: snok/install-poetry@v1
-      with:
-        version: 1.3.2
-        virtualenvs-create: true
-        virtualenvs-in-project: true
-    
-    - name: Install dependencies
-      run: poetry install --no-interaction --no-root
-    
-    - name: Build project
-      run: poetry build
-    
-    - name: Create deployment package
-      run: |
-        mkdir deployment
-        cp dist/*.whl deployment/
-        cd deployment && unzip *.whl
-        zip -r ../function.zip .
-    
-    - name: Configure AWS credentials
-      uses: aws-actions/configure-aws-credentials@v1
-      with:
-        role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
-        aws-region: eu-west-2
-    
-    - name: Deploy to Lambda
-      run: |
-        aws lambda update-function-code --function-name example-lambda-function --zip-file fileb://function.zip
 
-    - name: Clean up
-      run: rm -rf deployment function.zip
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.12"
+
+      - name: Install Poetry
+        uses: snok/install-poetry@v1
+        with:
+          version: 1.3.2
+          virtualenvs-create: true
+          virtualenvs-in-project: true
+
+      - name: Install dependencies
+        run: poetry install --no-interaction --no-root
+
+      - name: Build project
+        run: poetry build
+
+      - name: Create deployment package
+        run: |
+          mkdir deployment
+          cp dist/*.whl deployment/
+          cd deployment && unzip *.whl
+          zip -r ../function.zip .
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          aws-region: eu-west-2
+
+      - name: Deploy to Lambda
+        run: |
+          aws lambda update-function-code --function-name example-lambda-function --zip-file fileb://function.zip
+
+      - name: Clean up
+        run: rm -rf deployment function.zip
